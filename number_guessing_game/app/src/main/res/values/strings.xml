@@ -1,0 +1,15 @@
+<resources>
+    <string name="app_name">Number Guess</string>
+    <string name="title_number_guess">Number Guess</string>
+    <string name="btn_start">Start</string>
+    <string name="label_guess">Guess a number:</string>
+    <string name="btn_do_guess">Do guess!</string>
+    <string name="edit_number">Number</string>
+    <string name="status_start_info">Press START to start the game</string>
+    <string name="label_log">Log:</string>
+    <string name="guess_hint">Guess a number between %1$d and %2$d</string>
+    <string name="status_too_low">Sorry, too low.</string>
+    <string name="status_too_high">Sorry, too high</string>
+    <string name="status_hit">You got it after %1$d!
+    Press START fr a new game.</string>
+</resources>
