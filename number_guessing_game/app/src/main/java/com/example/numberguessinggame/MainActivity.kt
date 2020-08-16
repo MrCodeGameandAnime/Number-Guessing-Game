@@ -13,10 +13,19 @@ import kotlinx.android.synthetic.main.activity_main.*
 import org.xml.sax.Attributes
 import kotlin.math.log
 
+// Number Guessing Game from Big Nerd Ranch v4 chapter 2
+
 class MainActivity : AppCompatActivity() {
+    // property types do not need to be explicit whereas Kotlin infers the data type
     var started = false
     var number = 0
     var tries = 0
+
+    // class visibility modifiers are as follows:
+    // public: default setting, the class can be instantiated from inside and outside of program
+    // private the class can only be instantiated from within the class or object
+    // protected instantiation is the same as private along with subclasses
+    // internal the constructor can be accessed from anywhere in the module while being locked out from other programs
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +68,8 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+
+
     private fun putInstanceData(outState: Bundle) {
         if (outState != null) with(outState) {
             putBoolean("started",started)
@@ -85,12 +96,14 @@ class MainActivity : AppCompatActivity() {
     }
 }
 
+// Primary constructor that creates a custom View object
 class Console(ctx:Context,aset:AttributeSet? = null): ScrollView(ctx,aset) {
     val tv = TextView(ctx)
     var text:String
         get() = tv.text.toString()
         set(value) { tv.setText(value) }
     init {
+        // creating property objects
         setBackgroundColor(0x40FFFF00)
         addView(tv)
     }
@@ -107,3 +120,23 @@ class Console(ctx:Context,aset:AttributeSet? = null): ScrollView(ctx,aset) {
         })
     }
 }
+
+class Person(val firstName:String,val lastName:String,val ssn:String,val dateOfBirth:String,val gender:Char) // Exercise 8
+class GameUser(val firstName:String,
+               val lastName:String,
+               val birthday:String,
+               val userName:String,
+               val registrationNumber:Int,
+               val userRank:Double) // Exercise 10
+
+val instance = GameUser(
+    // Named constructor parameter instantiation is more explicit and human readable
+    firstName = "Saya",
+    lastName = "Diva",
+    birthday = "200BC",
+    userName = "QueenOfTheDamned",
+    registrationNumber = 345,
+    userRank = 5.6
+)
+
+val firstPerson = Person("Jack","Black","0983451289","03/22/76",'M') // Exercise 9
