@@ -33,6 +33,10 @@ class MainActivity : AppCompatActivity() {
 
         fetchSavedInstanceData(savedInstanceState)
         doGuess.setEnabled(started)
+
+        var gameUser = GameUser("Jack","Black","0983451289",
+            4,"03/22/76",60.9) // Exercise 12
+
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
@@ -121,22 +125,57 @@ class Console(ctx:Context,aset:AttributeSet? = null): ScrollView(ctx,aset) {
     }
 }
 
-class Person(val firstName:String,val lastName:String,val ssn:String,val dateOfBirth:String,val gender:Char) // Exercise 8
+
+class Person(val firstName:String,val lastName:String,val ssn:String = " ",val dateOfBirth:String,val gender:Char) {
+    // Exercise 8,13, and 15
+    constructor(firstName: String,lastName: String,ssn: String,gender: Char) :
+            this(firstName = firstName,
+                 lastName = lastName,
+                 ssn = ssn,
+                 gender = gender,
+                 dateOfBirth = "0000-00-00")
+
+}
 class GameUser(val firstName:String,
                val lastName:String,
-               val birthday:String,
                val userName:String,
                val registrationNumber:Int,
-               val userRank:Double) // Exercise 10
+               val birthday:String = "1910-06-07", // Exercise 10/ Exercise 14
+               val userRank:Double = 0.0) {
+    // Secondary constructor
+    constructor(firstName: String,lastName: String,userName: String,registrationNumber: Int) :
+            this(firstName = firstName,
+            lastName = lastName,
+            userName = userName,
+            registrationNumber = registrationNumber,
+            birthday = "",
+            userRank = 0.0)
+}
 
-val instance = GameUser(
+val firstPerson = Person("Jack","Black","0983451289","03/22/76",'M') // Exercise 9
+val secondPerson = Person(
+    firstName = "Jack",
+    lastName = "Black",
+    ssn = "0983451289",
+    dateOfBirth = "03/22/76",
+    gender = 'M') // Exercise 11
+val thirdPerson = Person("Tito","Ortiz","00000",'M') // Exercise 15
+
+val gameUserOne = GameUser(
     // Named constructor parameter instantiation is more explicit and human readable
     firstName = "Saya",
     lastName = "Diva",
     birthday = "200BC",
     userName = "QueenOfTheDamned",
     registrationNumber = 345,
-    userRank = 5.6
-)
+    userRank = 5.6)
+val gameUserTwo = GameUser(
+    firstName = "Heath",
+    lastName = "Ledger",
+    userName = "TheJoker",
+    registrationNumber = 777)
 
-val firstPerson = Person("Jack","Black","0983451289","03/22/76",'M') // Exercise 9
+object ObjectName {
+    // Singleton object that does not need its state changed. Good usages for Singletons
+    // are Constants, Preferences, Utilities, and Databases. This feature should not be used often.
+}
