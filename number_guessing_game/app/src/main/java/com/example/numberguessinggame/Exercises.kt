@@ -1,11 +1,14 @@
 package com.example.numberguessinggame
 
 import android.util.Log
+import com.example.numberguessinggame.common.Window
+import com.example.numberguessinggame.model.GameUser
+
 
 fun main() {
     var gameUser = GameUser("Jack","Black","0983451289",
         4,"03/22/76",60.9) // Exercise 12
-    println("onCreate: " +Window.NUMBER_OF_TABS+"\n"+Window.PREFS_FILE+"\n"+Window.WINDOW_TITLE) //Exercise 17
+    println("onCreate: " + Window.NUMBER_OF_TABS+"\n"+ Window.PREFS_FILE+"\n"+ Window.WINDOW_TITLE) //Exercise 17
 
     var triangleOne = Triangle(2,2,4) //Exercise 19
     val numberOfCorners = Triangle.NUMBER_OF_CORNERS // Exercise 19
@@ -20,13 +23,7 @@ class Person(val firstName:String,val lastName:String,val ssn:String = " ",val d
     constructor(firstName: String,lastName: String,ssn: String,gender: Char) :
             this(firstName = firstName,lastName = lastName,ssn = ssn,gender = gender,dateOfBirth = "0000-00-00")
 }
-class GameUser(val firstName:String,val lastName:String,val userName:String, val registrationNumber:Int,
-               val birthday:String = "1910-06-07",val userRank:Double = 0.0) { // Exercise 10 and Exercise 14
-    // Secondary constructor
-    constructor(firstName: String,lastName: String,userName: String,registrationNumber: Int) :
-            this(firstName = firstName,lastName = lastName,userName = userName,registrationNumber = registrationNumber,
-                birthday = "",userRank = 0.0)
-}
+
 // Exercise 18
 class Triangle(firstSideLength:Int,secondSideLength:Int,thirdSideLength:Int) {
     companion object {

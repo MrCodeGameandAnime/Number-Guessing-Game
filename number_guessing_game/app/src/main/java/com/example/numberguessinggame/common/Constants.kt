@@ -1,4 +1,4 @@
-package com.example.numberguessinggame
+package com.example.numberguessinggame.common
 
 object Constants{
     // Singleton object that does not need its state changed. Good usages for Singletons
