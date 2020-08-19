@@ -4,6 +4,8 @@ import android.util.Log
 import com.example.numberguessinggame.common.Window
 import com.example.numberguessinggame.model.GameUser
 
+// Chapter 2
+///////////////////////////////////////////////////////
 
 fun main() {
     var gameUser = GameUser("Jack","Black","0983451289",
@@ -16,6 +18,11 @@ fun main() {
     val collector = Collector()
     val triangle:GraphicsObject = GraphicTriangle()
     collector.add(triangle)
+
+    val aClass = A() // Exercise 2 chapter 3
+    aClass.a = 4
+
+    println("1 + 2 = ${1 + 2}")
 }
 
 class Person(val firstName:String,val lastName:String,val ssn:String = " ",val dateOfBirth:String,val gender:Char) {
@@ -125,3 +132,19 @@ val thirdPerson = Person("Tito","Ortiz","00000",'M') // Exercise 15
 val gameUserOne = GameUser(firstName = "Saya",lastName = "Diva",birthday = "200BC",
     userName = "QueenOfTheDamned",registrationNumber = 345,userRank = 5.6)
 val gameUserTwo = GameUser(firstName = "Heath",lastName = "Ledger",userName = "TheJoker",registrationNumber = 777)
+
+
+// Chapter 3
+//////////////////////////////////////////////////////////////////
+
+// Exercise 2
+class A {
+    var a: Int =1
+    init {
+        a = 2
+    }
+
+    fun b() {
+        a = 3
+    }
+}
