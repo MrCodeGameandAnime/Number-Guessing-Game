@@ -1,11 +1,14 @@
 package com.example.numberguessinggame
 
 import android.util.Log
+import com.example.numberguessinggame.AB.Companion.x
 import com.example.numberguessinggame.common.Window
 import com.example.numberguessinggame.model.GameUser
 
 // Chapter 2
 ///////////////////////////////////////////////////////
+
+private lateinit var v:Triangle
 
 fun main() {
     var gameUser = GameUser("Jack","Black","0983451289",
@@ -23,12 +26,27 @@ fun main() {
     aClass.a = 4
 
     println("1 + 2 = ${1 + 2}")
+    val a = 42
+    val s = "If we add 4 we get ${a+4}" // Exercise 3 chapter 2
+
+    println(::v.isInitialized)
+    val bc = AB()
+    // accessing companion object from the class does not need to be instantiated
+    println(AB.x(ab=23))
+    89
+    483
 }
 
 class Person(val firstName:String,val lastName:String,val ssn:String = " ",val dateOfBirth:String,val gender:Char) {
+    var i: Int? = 12
+    var s:String = "hello"
+    val b:Int = 8
     // Exercise 8,13, and 15
     constructor(firstName: String,lastName: String,ssn: String,gender: Char) :
             this(firstName = firstName,lastName = lastName,ssn = ssn,gender = gender,dateOfBirth = "0000-00-00")
+    init {
+        i = null
+    }
 }
 
 // Exercise 18
@@ -146,5 +164,31 @@ class A {
 
     fun b() {
         a = 3
+    }
+}
+
+// One line function
+fun add10(int: Int) = int+10
+// Implementing "Unit" explicitly declares that the function returns nothing
+fun ten(): Unit{}
+
+// function modifiers private,internal,protected,public,open,override,final override,abstract
+
+// Exercise 8
+class C(val c:Int) {
+    fun add(c:Int): Int = this.c+c
+// Use "this" to access properties instead of parameters where parameters mask properties in  functions
+    fun mult(b:Int):Int = this.c*b
+}
+
+// Exercise 9
+interface AInterface {
+    fun add(b:Int): Int
+    fun mult(b:Int): Int
+}
+
+class AB {
+    companion object {
+        fun x(ab:Int):Int {return ab+7}
     }
 }
