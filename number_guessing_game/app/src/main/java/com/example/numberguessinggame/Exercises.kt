@@ -1,16 +1,16 @@
 package com.example.numberguessinggame
 
 import android.util.Log
-import com.example.numberguessinggame.AB.Companion.x
 import com.example.numberguessinggame.common.Window
 import com.example.numberguessinggame.model.GameUser
+import java.lang.reflect.ParameterizedType
 
 // Chapter 2
 ///////////////////////////////////////////////////////
 
 private lateinit var v:Triangle
 
-fun main() {
+fun main(args:Array<String>) {
     var gameUser = GameUser("Jack","Black","0983451289",
         4,"03/22/76",60.9) // Exercise 12
     println("onCreate: " + Window.NUMBER_OF_TABS+"\n"+ Window.PREFS_FILE+"\n"+ Window.WINDOW_TITLE) //Exercise 17
@@ -33,8 +33,21 @@ fun main() {
     val bc = AB()
     // accessing companion object from the class does not need to be instantiated
     println(AB.x(ab=23))
-    89
-    483
+    println(bc.addValues())
+
+    // Exercise 12 chapter 3
+    val personTwo = PersonTwo()
+    personTwo.setName(fName = "John",lname = "Doe")
+
+    // Exercise 13 chapter 3
+    setData(firstName = "George",lastName = "P",birthday = "08/20/20",ssn = "0988768787")
+    println(setData(firstName = "George",lastName = "P",birthday = "08/20/20",ssn = "0988768787"))
+
+    val f = func("String","Data")
+
+    val club = Club() // Exercise 14
+    club.addMembers("dave","joe","sarah","tina")
+
 }
 
 class Person(val firstName:String,val lastName:String,val ssn:String = " ",val dateOfBirth:String,val gender:Char) {
@@ -61,7 +74,6 @@ class Triangle(firstSideLength:Int,secondSideLength:Int,thirdSideLength:Int) {
 }
 
 class Collector {
-
     fun add(graphics:GraphicsObject) {
         println("Collector.add()")
         println("Number of corners: "+ graphics.numberOfCorners())
@@ -75,7 +87,6 @@ class GraphicTriangle: GraphicsObject {
     override fun numberOfCorners(): Int {
         return 3
     }
-
     override fun coordsOf(index: Int): Pair<Double, Double> {
         return when(index) {
             0 -> Pair(-1.0,0.0)
@@ -85,9 +96,7 @@ class GraphicTriangle: GraphicsObject {
         }
     }
 
-    override fun fillColor(): String {
-        return "red"
-    }
+    override fun fillColor(): String { return "red" }
 }
 
 class GraphicTriangleAlt: GraphicsObject {
@@ -146,7 +155,7 @@ val secondPerson = Person(
     gender = 'M') // Exercise 11
 val thirdPerson = Person("Tito","Ortiz","00000",'M') // Exercise 15
 
-// Named constructor parameter instantiation is more explicit and human readable
+// Named constructor parameter instantiation is more explicit and readable
 val gameUserOne = GameUser(firstName = "Saya",lastName = "Diva",birthday = "200BC",
     userName = "QueenOfTheDamned",registrationNumber = 345,userRank = 5.6)
 val gameUserTwo = GameUser(firstName = "Heath",lastName = "Ledger",userName = "TheJoker",registrationNumber = 777)
@@ -177,7 +186,8 @@ fun ten(): Unit{}
 // Exercise 8
 class C(val c:Int) {
     fun add(c:Int): Int = this.c+c
-// Use "this" to access properties instead of parameters where parameters mask properties in  functions
+    // Use "this" to access properties instead of parameters where parameters mask properties in functions
+    // e.g val c:Int  and c:Int
     fun mult(b:Int):Int = this.c*b
 }
 
@@ -188,7 +198,76 @@ interface AInterface {
 }
 
 class AB {
+    val v: Int = 8
+    val i: Int = 7
     companion object {
         fun x(ab:Int):Int {return ab+7}
     }
+
+    fun addValues():Int { return v+i}
 }
+
+// Exercise 12
+class PersonTwo {
+    var firstName:String? = null
+    var lastName:String? = null
+    fun setName(fName:String,lname:String) {
+        firstName = fName
+        lastName = lname
+    }
+}
+
+// Exercise 13
+fun setData(lastName:String= " ",firstName: String=" ",birthday:String? = " ",ssn:String? = " ") {}
+
+fun moreData():Unit {}
+
+// vararg can take N + x parameters where X is any number from 0 to infinity
+fun func(vararg paramV:String) {}
+
+// Exercise 14
+class Club{
+
+    fun addMembers(vararg names:String){
+        println("Number of names: " + names.size)
+        println(names.joinToString(" : "))
+    }
+}
+
+// Abstract function requires an abstract class and can have no function body, abstract class must
+// be inherited
+abstract class AbstractClass {
+    abstract fun function(vararg data:String)
+}
+
+class AbstractClub: AbstractClass() {
+    override fun function(vararg data: String) {
+    }
+}
+
+// Polymorphism allows functions to be named the same and Kotlin discern the difference based on parameter type
+class Calculator{
+    fun add(a:Int){ }
+    fun add(a:Double) { }
+    fun add(a:String) { }
+}
+
+// Local functions allow having functions inside of functions
+fun a() {
+    fun b() {
+    }
+}
+// Inheritance requires the class modifier "open"
+open class K(dataOne:String,dataTwo: String) {
+    constructor() : this(dataOne = " ",dataTwo = " ")
+
+    open fun someData(data:Int):Int {
+        return data + 10
+    }
+} // super class of G
+class G: K() {
+    override fun someData(data: Int): Int {
+        return data + 20
+    }
+} // subclass of K
+class F: K("jim","Bob")
