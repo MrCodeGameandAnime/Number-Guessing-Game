@@ -3,11 +3,11 @@ package com.example.numberguessinggame
 import android.util.Log
 import com.example.numberguessinggame.common.Window
 import com.example.numberguessinggame.model.GameUser
-import java.lang.reflect.ParameterizedType
 
 // Chapter 2
 ///////////////////////////////////////////////////////
 
+private var TAG:String = "EXER"
 private lateinit var v:Triangle
 
 fun main(args:Array<String>) {
@@ -48,6 +48,10 @@ fun main(args:Array<String>) {
     val club = Club() // Exercise 14
     club.addMembers("dave","joe","sarah","tina")
 
+    // overridden class parameters inherited from class H to I
+    val i = I(23)
+    i.x()
+    i.y()
 }
 
 class Person(val firstName:String,val lastName:String,val ssn:String = " ",val dateOfBirth:String,val gender:Char) {
@@ -271,3 +275,27 @@ class G: K() {
     }
 } // subclass of K
 class F: K("jim","Bob")
+
+// Exercise 17
+// Overriding class parameters
+open class H(open val a:Int) {
+    // allow properties to be overridden
+    open var i:Int = 0
+    open fun x() {
+        println(TAG+ "H.x() -> a = ${i} ")
+    }
+
+    fun q() {
+        println(TAG+ "H.q() -> a = $i ")
+    }
+}
+// Exercise 17
+// overriding class parameters inherited from class H to I
+class I(override val a:Int):H(56) {
+    // overriding properties
+    override var i: Int = 1
+    fun y() {
+        println(TAG+ "I.y() -> a = $i ")
+        q()
+    }
+}
