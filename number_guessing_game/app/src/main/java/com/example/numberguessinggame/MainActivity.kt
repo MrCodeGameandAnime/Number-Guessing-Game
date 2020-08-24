@@ -3,6 +3,7 @@ package com.example.numberguessinggame
 import android.os.Bundle
 import android.util.Log
 import android.view.View
+import android.widget.Button
 import androidx.appcompat.app.AppCompatActivity
 import com.example.numberguessinggame.common.Constants
 import kotlinx.android.synthetic.main.activity_main.*
@@ -17,6 +18,8 @@ class MainActivity : AppCompatActivity() {
     var tries = 0
     private val console = Console(this,null)
 
+    private lateinit var startButton:Button
+
     // class visibility modifiers are as follows:
     // public: default setting, the class can be instantiated from inside and outside of program
     // private the class can only be instantiated from within the class or object
@@ -30,7 +33,13 @@ class MainActivity : AppCompatActivity() {
         fetchSavedInstanceData(savedInstanceState)
         doGuess.setEnabled(started)
 
+        startButton = findViewById(R.id.start_button)
+        startButton.setOnClickListener { v:View ->
 
+        }
+        start_button.setOnClickListener { v:View ->
+
+        }
     }
 
     override fun onSaveInstanceState(outState: Bundle) {
